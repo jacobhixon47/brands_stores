@@ -26,7 +26,7 @@ end
 describe('add a store to the brand', {:type => :feature}) do
   it('allows a user to add a store to a brand') do
     visit('/')
-    fill_in('store_name', :with => 'DSW')
+    fill_in('store_name', :with => 'Journeys')
     find('#add_store_submit').click
     click_link("Home")
     fill_in('brand_name', :with => 'Nike')
@@ -34,8 +34,8 @@ describe('add a store to the brand', {:type => :feature}) do
     click_link('Home')
     click_link('Brands')
     click_link('Nike')
-    select("DSW", :from => "brand_store_selector")
+    select("Journeys", :from => "brand_store_selector")
     click_button('Add')
-    expect(page).to have_content('DSW')
+    expect(page).to have_content('Journeys')
   end
 end

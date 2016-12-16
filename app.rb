@@ -3,8 +3,6 @@ Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
-require('pry')
-
 get('/') do
   @brands = Brand.all().order(:name)
   @stores = Store.all().order(:name)
@@ -21,7 +19,7 @@ get('/stores') do
 end
 
 post('/stores') do
-  @new_store = Store.new({name: params.fetch('store_name')})
+  @new_store = Store.new({name: params.fetch('store_name').titlecase()})
   if @new_store.save()
     redirect("/stores/#{@new_store.id().to_s()}")
   else
@@ -54,7 +52,7 @@ patch('/stores/:id') do
   @brands = Brand.all().order(:name)
   @stores = Store.all().order(:name)
   @store_brands = @store.brands.order(:name)
-  new_name = params.fetch('new_store_name')
+  new_name = params.fetch('new_store_name').titlecase()
   @store.update(name: new_name)
   erb(:store)
 end
@@ -76,7 +74,7 @@ get('/brands') do
 end
 
 post('/brands') do
-  @new_brand = Brand.new({name: params.fetch('brand_name')})
+  @new_brand = Brand.new({name: params.fetch('brand_name').titlecase()})
   if @new_brand.save()
     redirect("/brands/#{@new_brand.id().to_s()}")
   else
