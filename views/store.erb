@@ -8,5 +8,24 @@
     <% end %>
   </ul>
 <% else %>
-  <h3 class="cyan-text">No Brands In Stock</h3>
+  <h4 class="cyan-text">No Brands In Stock</h4>
 <% end %>
+
+<div class="row black cyan-text text-darken-2">
+  <div class="input-field col s12">
+
+    <form class="col s12 cyan-text text-darken-2" action="/stores/<%= @store.id() %>" method="post">
+      <select multiple name='multi_brands[]' required id="store_brand_selector">
+        <option value="" disabled>Add A Brand</option>
+        <% @brands.each() do |brand| %>
+          <% if @store_brands.include?(brand) %>
+          <% else %>
+            <option value="<%= brand.id()%>" name='<%= brand.name() %>'><%= brand.name() %></option>
+          <% end %>
+        <% end %>
+      </select>
+      <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+    </form>
+
+  </div>
+</div>

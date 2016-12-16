@@ -24,7 +24,7 @@ describe('shows all brands on side menu', {:type => :feature}) do
 end
 
 describe('add a store to the brand', {:type => :feature}) do
-  it('allows a user to add a brand to a store') do
+  it('allows a user to add a store to a brand') do
     visit('/')
     fill_in('store_name', :with => 'DSW')
     find('#add_store_submit').click
