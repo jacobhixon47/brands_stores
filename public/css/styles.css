@@ -1,0 +1,11 @@
+.brand-logo {
+  padding-left: 1% !important;
+}
+
+.collapsible-header, .collapsible-body {
+  border-bottom: none !important;
+}
+
+input {
+  border-bottom: 1px solid #0097a7 !important;
+}

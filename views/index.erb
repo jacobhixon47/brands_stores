@@ -1,0 +1,35 @@
+<ul class="collapsible popout" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header cyan darken-2 white-text" id="add_brand_div"><i class="material-icons">library_add</i>Add Brand</div>
+    <div class="collapsible-body">
+      <div class="row">
+        <form class="col s12 cyan-text text-darken-2" action="/brands" method="post">
+          <div class="row">
+            <div class="input-field col s6 cyan-text text-darken-2">
+              <input id="brand_name" type="text" class="validate" name="brand_name">
+              <label for="brand_name" class="cyan-text text-darken-2">Brand Name</label>
+              <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header cyan darken-2 white-text"><i class="material-icons" id="add_store_div">library_add</i>Add Store</div>
+      <div class="collapsible-body">
+        <div class="row">
+          <form class="col s12 cyan-text text-darken-2" action="/stores" method="post">
+            <div class="row">
+              <div class="input-field col s6 cyan-text text-darken-2">
+                <input id="store_name" type="text" class="validate" name="store_name">
+                <label for="store_name" class="cyan-text text-darken-2">Store Name</label>
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_store_submit">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
