@@ -17,7 +17,7 @@
           <a href="/" class="brand-logo">YouShoe</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#" data-activates="brands-slide-out" class="side-list">Brands</a></li>
-            <li><a href="/stores">Stores</a></li>
+            <li><a href="#" data-activates="stores-slide-out" class="side-list">Stores</a></li>
             <li><a href="/">Home</a></li>
           </ul>
         </div>
@@ -33,6 +33,17 @@
         <% end %>
       <% else %>
         <li><a class='waves-effect cyan darken-1 black-text'>No Brands Yet</a></li>
+      <% end %>
+    </ul>
+
+    <ul id="stores-slide-out" class="side-nav cyan darken-2">
+      <% if @stores.any? %>
+      <h3 class="black-text">Stores</h3>
+        <% @stores.each() do |store| %>
+          <li><a class="waves-effect cyan darken-1 black-text" href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+        <% end %>
+      <% else %>
+        <li><a class='waves-effect cyan darken-1 black-text'>No Stores Yet</a></li>
       <% end %>
     </ul>
 
