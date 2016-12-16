@@ -51,3 +51,11 @@ h1.cyan-text {
 .top-margin-add {
   margin-top: 6% !important;
 }
+
+.right-border-add {
+  border-right: 1px #0097a7 solid;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -19,7 +19,7 @@ get('/stores') do
 end
 
 post('/stores') do
-  @new_store = Store.new({name: params.fetch('store_name').titlecase()})
+  @new_store = Store.new({name: params.fetch('store_name').titlecase})
   if @new_store.save()
     redirect("/stores/#{@new_store.id().to_s()}")
   else
@@ -74,7 +74,7 @@ get('/brands') do
 end
 
 post('/brands') do
-  @new_brand = Brand.new({name: params.fetch('brand_name').titlecase()})
+  @new_brand = Brand.new({name: params.fetch('brand_name').titlecase})
   if @new_brand.save()
     redirect("/brands/#{@new_brand.id().to_s()}")
   else
