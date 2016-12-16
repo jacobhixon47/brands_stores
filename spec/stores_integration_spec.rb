@@ -39,3 +39,18 @@ describe('add a brand to the store', {:type => :feature}) do
     expect(page).to have_content('Nike')
   end
 end
+
+describe('add a brand to the store', {:type => :feature}) do
+  it('allows a user to add a brand to a store') do
+    visit('/')
+    fill_in('store_name', :with => 'DSW')
+    find('#add_store_submit').click
+    click_link("Home")
+    click_link('Stores')
+    click_link('DSW')
+    click_link('Edit')
+    fill_in('new_store_name', :with => 'Journeys')
+    find('#edit_store_submit').click
+    expect(page).to have_content('Journeys')
+  end
+end

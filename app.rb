@@ -3,6 +3,8 @@ Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+require('pry')
+
 get('/') do
   @brands = Brand.all().order(:name)
   @stores = Store.all().order(:name)
@@ -44,6 +46,16 @@ post('/stores/:id') do
   multi_brands_ids.each() do |brand_id|
     @store.brands.push(Brand.find(brand_id))
   end
+  erb(:store)
+end
+
+patch('/stores/:id') do
+  @store = Store.find(params.fetch('id').to_i())
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @store_brands = @store.brands.order(:name)
+  new_name = params.fetch('new_store_name')
+  @store.update(name: new_name)
   erb(:store)
 end
 
