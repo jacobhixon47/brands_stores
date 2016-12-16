@@ -57,8 +57,8 @@ patch('/stores/:id') do
   erb(:store)
 end
 
-delete('/stores/:id') do
-  @store = Store.find(params.fetch('id').to_i())
+delete('/stores') do
+  @store = Store.find(params.fetch('store_id').to_i())
   @brands = Brand.all().order(:name)
   @stores = Store.all().order(:name)
   @store.destroy
@@ -100,4 +100,12 @@ post('/brands/:id') do
     @brand.stores.push(Store.find(store_id))
   end
   erb(:brand)
+end
+
+delete('/brands') do
+  @brand = Brand.find(params.fetch('brand_id').to_i())
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @brand.destroy
+  erb(:brands)
 end

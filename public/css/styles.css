@@ -24,3 +24,30 @@ input {
   border: 2px black solid !important;
   border-radius: 10px !important;
 }
+
+.collection {
+  border: 1px #0097a7 solid !important;
+}
+
+.collection-item {
+  border-bottom: 1px #0097a7 solid !important;
+}
+
+.collection-item:hover {
+  background-color: #0097a7 !important;
+  color: black !important;
+}
+
+.name-row {
+  text-align: center;
+  border-bottom: 1px #0097a7 solid;
+  padding-bottom: 2%;
+}
+
+h1.cyan-text {
+  margin-bottom: 1%;
+}
+
+.top-margin-add {
+  margin-top: 6% !important;
+}

@@ -1,31 +1,49 @@
-<h1 class="cyan-text"><%= @brand.name() %></h1>
-
-<% if @brand_stores.any? %>
-  <h3 class="cyan-text">Where To Buy</h3>
-  <ul class="cyan-text">
-    <% @brand_stores.each() do |store| %>
-      <li class="cyan-text"><a href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+<div class="row name-row">
+  <h1 class="cyan-text"><%= @brand.name() %></h1>
+  <a class="waves-effect waves-light btn red black-text" href="#delete_brand_modal">Delete Brand</a>
+</div>
+<div class="row">
+  <div class="col s6">
+    <div class="row black cyan-text text-darken-2">
+      <div class="input-field col s12">
+        <form class="col s12 cyan-text text-darken-2" action="/brands/<%= @brand.id() %>" method="post">
+          <select multiple name='multi_stores[]' required id="brand_store_selector">
+            <option value="" disabled>Add A Store</option>
+            <% @stores.each() do |store| %>
+              <% if @brand_stores.include?(store) %>
+              <% else %>
+                <option value="<%= store.id()%>" name='<%= store.name() %>'><%= store.name() %></option>
+              <% end %>
+            <% end %>
+          </select>
+          <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <% if @brand_stores.any? %>
+    <div class="collection">
+      <a class="collection-item cyan darken-2 black-text">Stores That Carry <%= @brand.name() %></a>
+      <% @brand_stores.each() do |store| %>
+        <a href="/stores/<%= store.id() %>" class="collection-item black cyan-text text-darken-2"><%= store.name() %></a>
+      <% end %>
+    </div>
+    <% else %>
+    <h4 class="cyan-text">This brand is not in stores yet</h4>
     <% end %>
-  </ul>
-<% else %>
-  <h4 class="cyan-text">This brand is not in stores yet</h4>
-<% end %>
+  </div>
+</div>
 
-<div class="row black cyan-text text-darken-2">
-  <div class="input-field col s12">
-
-    <form class="col s12 cyan-text text-darken-2" action="/brands/<%= @brand.id() %>" method="post">
-      <select multiple name='multi_stores[]' required id="brand_store_selector">
-        <option value="" disabled>Add A Store</option>
-        <% @stores.each() do |store| %>
-          <% if @brand_stores.include?(store) %>
-          <% else %>
-            <option value="<%= store.id()%>" name='<%= store.name() %>'><%= store.name() %></option>
-          <% end %>
-        <% end %>
-      </select>
-      <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+<!-- Modal -->
+<div id="delete_brand_modal" class="modal black">
+  <div class="modal-content">
+    <h4 class="cyan-text text-darken-2">Are you sure you want to delete <%= @brand.name() %>?</h4>
+    <form action="/brands" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="brand_id" value="<%= @brand.id() %>">
+      <button class="btn waves-effect waves-light red black-text" type="submit" id="delete_brand_confirm">Delete</button>
+      <a href="#!" class="modal-action modal-close waves-effect black cyan-text text-darken-2"><button class="btn waves-effect waves-light cyan darken-2 black-text" type="button">Back</button></a>
     </form>
-
   </div>
 </div>

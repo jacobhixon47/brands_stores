@@ -1,11 +1,29 @@
-<% if @stores.any? %>
-<h3>All Stores:</h3>
-<ul>
-  <% @stores.each() do |store| %>
-    <li><a href="/stores/<%= store.id %>"><%= store.name() %></a></li>
-  <% end %>
-</ul>
 
-<% else %>
-  <h3>There are no stores yet!</h3>
-<% end %>
+<div class="row">
+  <div class="col s6">
+    <div class="row">
+      <form class="col s12 cyan-text text-darken-2" action="/stores" method="post">
+        <div class="row">
+          <div class="input-field col s6 cyan-text text-darken-2">
+            <input id="store_name" type="text" class="validate" name="store_name" autocomplete="off" required>
+            <label for="store_name" class="cyan-text text-darken-2">Store Name</label>
+            <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_store_submit">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col s6">
+    <% if @stores.any? %>
+    <div class="collection top-margin-add">
+      <a class="collection-item cyan darken-2 black-text">All Stores</a>
+      <% @stores.each() do |store| %>
+        <a href="/stores/<%= store.id() %>" class="collection-item black cyan-text text-darken-2"><%= store.name() %></a>
+      <% end %>
+    </div>
+    <% else %>
+    <h3 class="cyan-text text-darken-2">No stores yet!</h3>
+    <% end %>
+  </div>
+</div>

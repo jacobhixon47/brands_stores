@@ -65,6 +65,6 @@ describe('delete a store', {:type => :feature}) do
     click_link('Journeys')
     click_link('Delete')
     find('#delete_store_confirm').click
-    expect(page).to have_content('There are no stores yet!')
+    expect(page).to have_content('No stores yet!')
   end
 end

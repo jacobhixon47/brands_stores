@@ -1,11 +1,27 @@
-<% if @brands.any? %>
-<h3 class="cyan-text text-darken-2">All Brands:</h3>
-<ul class="cyan-text text-darken-2">
-  <% @brands.each() do |brand| %>
-    <li><a href="/brands/<%= brand.id %>" class="cyan-text text-darken-2"><%= brand.name() %></a></li>
-  <% end %>
-</ul>
-
-<% else %>
-  <h3 class="cyan-text text-darken-2">There are no brands yet!</h3>
-<% end %>
+<div class="row">
+  <div class="col s6">
+    <div class="row">
+      <form class="col s12 cyan-text text-darken-2" action="/brands" method="post">
+        <div class="row">
+          <div class="input-field col s6 cyan-text text-darken-2">
+            <input id="brand_name" type="text" class="validate" name="brand_name" autocomplete="off" required>
+            <label for="brand_name" class="cyan-text text-darken-2">Brand Name</label>
+            <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col s6">
+    <% if @brands.any? %>
+    <div class="collection top-margin-add">
+      <a class="collection-item cyan darken-2 black-text">All Brands</a>
+      <% @brands.each() do |brand| %>
+      <a href="/brands/<%= brand.id() %>" class="collection-item black cyan-text text-darken-2"><%= brand.name() %></a>
+      <% end %>
+    </div>
+    <% else %>
+    <h3 class="cyan-text text-darken-2">No brands yet!</h3>
+    <% end %>
+  </div>
+</div>

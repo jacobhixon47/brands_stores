@@ -39,3 +39,17 @@ describe('add a store to the brand', {:type => :feature}) do
     expect(page).to have_content('Journeys')
   end
 end
+
+describe('delete a brand', {:type => :feature}) do
+  it('allows a user to delete a brand') do
+    visit('/')
+    fill_in('brand_name', :with => 'nike')
+    find('#add_brand_submit').click
+    click_link("Home")
+    click_link('Brands')
+    click_link('Nike')
+    click_link('Delete')
+    find('#delete_brand_confirm').click
+    expect(page).to have_content('No brands yet!')
+  end
+end

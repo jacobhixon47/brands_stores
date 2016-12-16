@@ -1,66 +1,70 @@
-<h1 class="cyan-text"><%= @store.name() %> </h1>
-<a class="waves-effect waves-light btn cyan darken-2 black-text" href="#edit_store_modal">Edit</a>
-<a class="waves-effect waves-light btn red black-text" href="#delete_store_modal">Delete</a>
-
-<% if @store_brands.any? %>
-  <h3 class="cyan-text">Brands In Stock</h3>
-  <ul class="cyan-text">
-    <% @store_brands.each() do |brand| %>
-      <li class="cyan-text"><a href="/brands/<%= brand.id() %>"><%= brand.name() %></a></li>
-    <% end %>
-  </ul>
-<% else %>
-  <h4 class="cyan-text">No Brands In Stock</h4>
-<% end %>
-
-<div class="row black cyan-text text-darken-2">
-  <div class="input-field col s12">
-
-    <form class="col s12 cyan-text text-darken-2" action="/stores/<%= @store.id() %>" method="post">
-      <select multiple name='multi_brands[]' required id="store_brand_selector">
-        <option value="" disabled>Add A Brand</option>
-        <% @brands.each() do |brand| %>
-          <% if @store_brands.include?(brand) %>
-          <% else %>
+<div class="row name-row">
+  <h1 class="cyan-text"><%= @store.name() %> </h1>
+  <a class="waves-effect waves-light btn cyan darken-2 black-text" href="#edit_store_modal">Edit Store</a>
+  <a class="waves-effect waves-light btn red black-text" href="#delete_store_modal">Delete Store</a>
+</div>
+<div class="row">
+  <div class="col s6">
+    <div class="row black cyan-text text-darken-2">
+      <div class="input-field col s12">
+        <form class="col s12 cyan-text text-darken-2" action="/stores/<%= @store.id() %>" method="post">
+          <select multiple name='multi_brands[]' required id="store_brand_selector">
+            <option value="" disabled>Add A Brand</option>
+            <% @brands.each() do |brand| %>
+            <% if @store_brands.include?(brand) %>
+            <% else %>
             <option value="<%= brand.id()%>" name='<%= brand.name() %>'><%= brand.name() %></option>
-          <% end %>
-        <% end %>
-      </select>
-      <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
-    </form>
-
+            <% end %>
+            <% end %>
+          </select>
+          <button class="btn waves-effect waves-light cyan darken-2" type="submit" id="add_brand_submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <% if @store_brands.any? %>
+    <div class="collection">
+      <a class="collection-item cyan darken-2 black-text">Brands in Stock</a>
+      <% @store_brands.each() do |brand| %>
+      <a href="/brands/<%= brand.id() %>" class="collection-item black cyan-text text-darken-2"><%= brand.name() %></a>
+      <% end %>
+    </div>
+    <% else %>
+    <h4 class="cyan-text">No Brands In Stock</h4>
+    <% end %>
   </div>
 </div>
 
-<!-- Modal Body -->
 
 
-  <!-- Modal Structure -->
-  <div id="edit_store_modal" class="modal cyan darken-2">
-    <div class="modal-content">
 
-      <form class="col s12 black-text" action="/stores/<%= @store.id() %>" method="post">
-        <div class="row">
-          <div class="input-field col s6 cyan darken-2 black-text">
 
-            <input type="hidden" name="_method" value="patch">
-            <input id="new_store_name" type="text" class="validate" name="new_store_name">
-            <label for="new_store_name" class="black-text">New Store Name</label>
-            <button class="btn waves-effect waves-light black cyan-text text-darken-2" type="submit" id="edit_store_submit">Save</button>
-          </div>
+<!-- Modalzzz-->
+
+<div id="edit_store_modal" class="modal cyan darken-2">
+  <div class="modal-content">
+    <form class="col s12 black-text" action="/stores/<%= @store.id() %>" method="post">
+      <div class="row">
+        <div class="input-field col s6 cyan darken-2 black-text">
+          <input type="hidden" name="_method" value="patch">
+          <input id="new_store_name" type="text" class="validate" name="new_store_name" autocomplete="off" required>
+          <label for="new_store_name" class="black-text">New Store Name</label>
+          <button class="btn waves-effect waves-light black cyan-text text-darken-2" type="submit" id="edit_store_submit">Save</button>
         </div>
-      </form>
-
-    </div>
+      </div>
+    </form>
   </div>
+</div>
 
-  <div id="delete_store_modal" class="modal black">
-    <div class="modal-content">
-      <h4 class="cyan-text text-darken-2">Are you sure you want to delete <%= @store.name() %>?</h4>
-      <form action="/stores/<%= @store.id() %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button class="btn waves-effect waves-light red black-text" type="submit" id="delete_store_confirm">Delete</button>
-        <a href="#!" class="modal-action modal-close waves-effect black cyan-text text-darken-2"><button class="btn waves-effect waves-light cyan darken-2 black-text" type="button">Back</button></a>
-      </form>
-    </div>
+<div id="delete_store_modal" class="modal black">
+  <div class="modal-content">
+    <h4 class="cyan-text text-darken-2">Are you sure you want to delete <%= @store.name() %>?</h4>
+    <form action="/stores" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="store_id" value="<%= @store.id() %>">
+      <button class="btn waves-effect waves-light red black-text" type="submit" id="delete_store_confirm">Delete</button>
+      <a href="#!" class="modal-action modal-close waves-effect black cyan-text text-darken-2"><button class="btn waves-effect waves-light cyan darken-2 black-text" type="button">Back</button></a>
+    </form>
   </div>
+</div>
