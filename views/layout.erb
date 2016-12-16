@@ -27,23 +27,42 @@
 
     <ul id="brands-slide-out" class="side-nav cyan darken-2">
       <% if @brands.any? %>
-      <h3 class="black-text">Brands</h3>
+      <h3><a href="/brands" class="waves-effect black-text"><strong>Brands</strong></a></h3>
         <% @brands.each() do |brand| %>
-          <li><a class="waves-effect cyan darken-1 black-text" href="/brands/<%= brand.id() %>"><%= brand.name() %></a></li>
+          <% if @brands.all().count >= 8 %>
+            <% count = 0 %>
+            <% until count == 8 %>
+              <li><a class="waves-effect cyan black-text" href="/brands/<%= brand.id() %>"><%= brand.name() %></a></li>
+              <% count += 1 %>
+            <% end %>
+          <% else %>
+          <li><a class="waves-effect cyan black-text" href="/brands/<%= brand.id() %>"><%= brand.name() %></a></li>
+          <% end %>
         <% end %>
+        <li><a class="waves-effect cyan darken-1 black-text" href="/brands">View All Brands ></a></li>
       <% else %>
-        <li><a class='waves-effect cyan darken-1 black-text'>No Brands Yet</a></li>
+        <li><a class='waves-effect cyan black-text'>No Brands Yet</a></li>
       <% end %>
     </ul>
 
     <ul id="stores-slide-out" class="side-nav cyan darken-2">
       <% if @stores.any? %>
-      <h3 class="black-text">Stores</h3>
+      <h3><a href="/stores" class="waves-effect black-text">Stores</a></h3>
         <% @stores.each() do |store| %>
-          <li><a class="waves-effect cyan darken-1 black-text" href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+
+          <% if @stores.all().count >= 8 %>
+            <% count = 0 %>
+            <% until count == 8 %>
+              <li><a class="waves-effect cyan black-text" href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+              <% count += 1 %>
+            <% end %>
+          <% else %>
+          <li><a class="waves-effect cyan black-text" href="/stores/<%= store.id() %>"><%= store.name() %></a></li>
+          <% end %>
         <% end %>
+        <li><a class="waves-effect cyan darken-1 black-text" href="/stores">View All Stores ></a></li>
       <% else %>
-        <li><a class='waves-effect cyan darken-1 black-text'>No Stores Yet</a></li>
+        <li><a class='waves-effect cyan black-text'>No Stores Yet</a></li>
       <% end %>
     </ul>
 
