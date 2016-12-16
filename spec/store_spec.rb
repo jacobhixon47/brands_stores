@@ -7,7 +7,7 @@ describe(Store) do
   end
 
   it("converts the name to titlecase") do
-    store = Store.create({:name => "nike"})
-    expect(store.name()).to(eq("Nike"))
+    store = Store.create({:name => "happy feet"})
+    expect(store.name()).to(eq("Happy Feet"))
   end
 end
