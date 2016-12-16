@@ -1,9 +1,9 @@
 <h1 class="cyan-text"><%= @store.name() %></h1>
 
-<% if @brands.any? %>
+<% if @store_brands.any? %>
   <h3 class="cyan-text">Brands In Stock</h3>
   <ul class="cyan-text">
-    <% @brands.each() do |brand| %>
+    <% @store_brands.each() do |brand| %>
       <li class="cyan-text"><a href="/brands/<%= brand.id() %>"><%= brand.name() %></a></li>
     <% end %>
   </ul>

@@ -4,6 +4,8 @@ Bundler.require(:default)
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get('/') do
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
   erb(:index)
 end
 
@@ -11,7 +13,8 @@ end
 # ------ Stores -------
 
 get('/stores') do
-  @stores = Store.all()
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
   erb(:stores)
 end
 
@@ -26,7 +29,9 @@ end
 
 get('/stores/:id') do
   @store = Store.find(params.fetch('id').to_i())
-  @brands = @store.brands()
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @store_brands = @store.brands.order(:name)
   erb(:store)
 end
 
@@ -34,7 +39,8 @@ end
 # ----- Brands -------
 
 get('/brands') do
-  @brands = Brand.all()
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
   erb(:brands)
 end
 
@@ -49,6 +55,8 @@ end
 
 get('/brands/:id') do
   @brand = Brand.find(params.fetch('id').to_i())
-  @stores = @brand.stores()
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @brand_stores = @brand.stores.order(:name)
   erb(:brand)
 end
