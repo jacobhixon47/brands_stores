@@ -60,3 +60,15 @@ get('/brands/:id') do
   @brand_stores = @brand.stores.order(:name)
   erb(:brand)
 end
+
+post('/brands/:id') do
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @brand = Brand.find(params.fetch('id').to_i())
+  @brand_stores = @brand.stores.order(:name)
+  multi_stores_ids = params[:multi_stores]
+  multi_stores_ids.each() do |store_id|
+    @brand.stores.push(Store.find(store_id))
+  end
+  erb(:brand)
+end
