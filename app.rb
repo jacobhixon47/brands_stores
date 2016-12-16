@@ -37,3 +37,18 @@ get('/brands') do
   @brands = Brand.all()
   erb(:brands)
 end
+
+post('/brands') do
+  @new_brand = Brand.new({name: params.fetch('brand_name')})
+  if @new_brand.save()
+    redirect("/brands/#{@new_brand.id().to_s()}")
+  else
+    erb(:index)
+  end
+end
+
+get('/brands/:id') do
+  @brand = Brand.find(params.fetch('id').to_i())
+  @stores = @brand.stores()
+  erb(:brand)
+end

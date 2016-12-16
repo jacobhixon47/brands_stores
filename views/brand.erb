@@ -1,0 +1,12 @@
+<h1 class="cyan-text"><%= @brand.name() %></h1>
+
+<% if @stores.any? %>
+  <h3 class="cyan-text">Where To Buy</h3>
+  <ul class="cyan-text">
+    <% @stores.each() do |store| %>
+      <li class="cyan-text"><a href="/stores/<%= brand.id() %>"><%= store.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3 class="cyan-text">This brand is not in stores yet</h3>
+<% end %>
