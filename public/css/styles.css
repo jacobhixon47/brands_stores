@@ -13,3 +13,14 @@ input {
 #new_store_name, #new_brand_name {
   border-bottom: 1px solid black !important;
 }
+
+#delete_store_modal {
+  text-align: center !important;
+  border: 2px #0097a7 solid !important;
+  border-radius: 10px !important;
+}
+
+#edit_store_modal {
+  border: 2px black solid !important;
+  border-radius: 10px !important;
+}

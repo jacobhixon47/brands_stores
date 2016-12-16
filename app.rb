@@ -59,6 +59,14 @@ patch('/stores/:id') do
   erb(:store)
 end
 
+delete('/stores/:id') do
+  @store = Store.find(params.fetch('id').to_i())
+  @brands = Brand.all().order(:name)
+  @stores = Store.all().order(:name)
+  @store.destroy
+  erb(:stores)
+end
+
 # ----- Brands -------
 
 get('/brands') do

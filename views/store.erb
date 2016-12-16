@@ -54,12 +54,13 @@
     </div>
   </div>
 
-  <div id="delete_store_modal" class="modal">
+  <div id="delete_store_modal" class="modal black">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
+      <h4 class="cyan-text text-darken-2">Are you sure you want to delete <%= @store.name() %>?</h4>
+      <form action="/stores/<%= @store.id() %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button class="btn waves-effect waves-light red black-text" type="submit" id="delete_store_confirm">Delete</button>
+        <a href="#!" class="modal-action modal-close waves-effect black cyan-text text-darken-2"><button class="btn waves-effect waves-light cyan darken-2 black-text" type="button">Back</button></a>
+      </form>
     </div>
   </div>
